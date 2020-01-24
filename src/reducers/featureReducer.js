@@ -26,7 +26,6 @@ export const featureReducer = (state = initialState, action) => {
   console.log(state, action);
   switch (action.type) {
     case ADD_FEATURE:
-      console.log(action.payload);
       return {
         ...state,
         car: { ...state.car, features: [...state.car.features, action.payload] }
@@ -41,8 +40,10 @@ export const featureReducer = (state = initialState, action) => {
       };
 
     case REMOVE_FEATURE:
+      console.log(action.payload);
       return {
-        ...state
+        ...state,
+        car: { ...state.car, features: [action.payload] }
       };
 
     case REMOVE_FEATURE_PRICE:
