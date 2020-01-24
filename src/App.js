@@ -5,13 +5,19 @@ import Header from "./components/Header";
 import AddedFeatures from "./components/AddedFeatures";
 import AdditionalFeatures from "./components/AdditionalFeatures";
 import Total from "./components/Total";
-import { addFeature } from "./actions/featureActions";
+import {
+  addFeature,
+  addFeaturePrice,
+  removeFeature,
+  removeFeaturePrice
+} from "./actions/featureActions";
 
 // STEP 1: create the redux store
 
 const App = props => {
-  const removeFeature = item => {
+  const removeItem = item => {
     // dispatch an action here to remove an item
+    props.removeFeature(item);
   };
 
   const buyItem = item => {
@@ -21,26 +27,39 @@ const App = props => {
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <Header car={props.carOnProps} />
+        <AddedFeatures
+          car={props.carOnProps}
+          additionalFeatures={props.additionalFeaturesOnProps}
+          removeItem={removeItem}
+        />
       </div>
       <div className="box">
         <AdditionalFeatures
-          additionalFeatures={props.additionalFeatures}
+          additionalFeatures={props.additionalFeaturesOnProps}
           buyItem={buyItem}
         />
-        <Total car={props.car} additionalPrice={props.additionalPrice} />
+        <Total
+          car={props.carOnProps}
+          additionalPrice={props.additionalPriceOnProps}
+          additionalFeatures={props.additionalFeaturesOnProps}
+        />
       </div>
     </div>
   );
 };
 
 const mapStateToProps = state => ({
-  additionalPrice: state.additionalPrice,
-  car: state.car,
-  additionalFeatures: state.additionalFeatures
+  additionalPriceOnProps: state.additionalPrice,
+  carOnProps: state.car,
+  additionalFeaturesOnProps: state.additionalFeatures
 });
 
-export default connect(mapStateToProps, { addFeature })(App);
+export default connect(mapStateToProps, {
+  addFeature,
+  addFeaturePrice,
+  removeFeature,
+  removeFeaturePrice
+})(App);
 // STEP 1a:
 // wrap APP in the Provider component and pass in the store obj

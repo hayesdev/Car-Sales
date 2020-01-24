@@ -1,4 +1,9 @@
-import { ADD_FEATURE } from "../actions/featureActions";
+import {
+  ADD_FEATURE,
+  ADD_FEATURE_PRICE,
+  REMOVE_FEATURE,
+  REMOVE_FEATURE_PRICE
+} from "../actions/featureActions";
 
 const initialState = {
   additionalPrice: 0,
@@ -28,10 +33,23 @@ export const featureReducer = (state = initialState, action) => {
         // feature: action.payload,
         // isAdded: !state.isAdded
       };
-    case "REMOVE_FEATURE":
+
+    case ADD_FEATURE_PRICE:
+      return {
+        ...state
+        // ...state.car.features.map(item => item.price)
+      };
+
+    case REMOVE_FEATURE:
       return {
         ...state
       };
+
+    case REMOVE_FEATURE_PRICE:
+      return {
+        ...state
+      };
+
     default:
       return state;
   }
