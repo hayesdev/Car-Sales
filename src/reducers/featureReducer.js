@@ -29,23 +29,25 @@ export const featureReducer = (state = initialState, action) => {
       return {
         ...state,
         car: { ...state.car, features: [...state.car.features, action.payload] }
-        // feature: action.payload,
-        // isAdded: !state.isAdded
       };
 
     case ADD_FEATURE_PRICE:
-      return {
-        ...state
-        // ...state.car.features.map(item => item.price)
-      };
-
-    case REMOVE_FEATURE:
       console.log(action.payload);
       return {
         ...state,
-        car: { ...state.car, features: [action.payload] }
+        car: { ...state.additionalPrice }
+      };
 
-        // additionalFeatures.filter(item => item.id < 3)
+    case REMOVE_FEATURE:
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          //
+          features: state.car.features.filter(
+            item => item.id !== action.payload.id
+          )
+        }
       };
 
     case REMOVE_FEATURE_PRICE:

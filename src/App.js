@@ -40,6 +40,7 @@ const App = props => {
           buyItem={buyItem}
         />
         <Total
+          buyItem={buyItem}
           car={props.carOnProps}
           additionalPrice={props.additionalPriceOnProps}
           additionalFeatures={props.additionalFeaturesOnProps}
