@@ -44,6 +44,8 @@ export const featureReducer = (state = initialState, action) => {
       return {
         ...state,
         car: { ...state.car, features: [action.payload] }
+
+        // additionalFeatures.filter(item => item.id < 3)
       };
 
     case REMOVE_FEATURE_PRICE:

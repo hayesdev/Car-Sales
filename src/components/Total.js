@@ -1,4 +1,5 @@
 import React from "react";
+import { bindActionCreators } from "redux";
 
 const Total = props => {
   return (
